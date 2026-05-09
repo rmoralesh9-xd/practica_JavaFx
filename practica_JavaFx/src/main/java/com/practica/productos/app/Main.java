@@ -1,5 +1,6 @@
 package com.practica.productos.app;
 
+import com.practica.productos.modelo.Producto;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,7 +16,12 @@ TextField campo = new TextField();
 Button boton = new Button("Mostrar");
 Label label = new Label();
 boton.setOnAction(e -> {
-label.setText(campo.getText());
+    try {
+Producto p = new Producto(campo.getText());
+label.setText(p.getNombre());
+} catch (Exception ex) {
+label.setText(ex.getMessage());
+}
 });
 VBox layout = new VBox(10, campo, boton, label);
 Scene scene = new Scene(layout, 300, 200);
@@ -25,6 +31,6 @@ stage.setScene(scene);
 stage.setTitle("Mi Aplicación JavaFX");
 
 stage.show();
-}
+} 
     }
 
